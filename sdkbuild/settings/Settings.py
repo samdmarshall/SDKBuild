@@ -28,7 +28,13 @@ class Settings(object):
         
         status = os.path.exists(sdkbuild_config_file);
         if status == False:
-            print 'creating plist file!';
+            print 'create the plist';
+        
+        status = os.path.exists(sdkbuild_config_file);
+        if status == False:
+            return status;
+        
+        print 'read the plist';
         
         return status;
     
