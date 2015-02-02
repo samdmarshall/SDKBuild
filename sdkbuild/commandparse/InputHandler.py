@@ -56,17 +56,34 @@ class InputHandler(cmd.Cmd):
         self.DisplayUsage(cmd_list.usage());
     
     def do_list(self, line):
-        cmd_list.action(self.GetArguments(str(line)));
+        cmd_list.action(self.settings);
     
     # SDK
     def help_sdk(self):
         self.DisplayUsage(cmd_sdk.usage());
     
     def do_sdk(self, line):
-        cmd_sdk.action(self.GetArguments(str(line)));
+        
+        
+        for item in self.settings.ListOfActiveSDKs():
+            if select_sdk == os.path.basename(item):
+                
+            
+        cmd_sdk.action();
     
     def complete_sdk(self, text, line, begidx, endidx):
-        return ['Mac', 'iOS', 'Custom']
+        SDKs = [];
+        for item in self.settings.ListOfActiveSDKs():
+            SDKs.append(os.path.basename(item));
+        
+        if not text:
+            completions = SDKs[:]
+        else:
+            completions = [ item
+                            for item in SDKs
+                            if item.startswith(text)
+                          ]
+        return completions
     
     # Xcode
     def help_xcode(self):
