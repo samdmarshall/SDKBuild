@@ -16,9 +16,9 @@ class cmd_sdk(object):
     
     @classmethod
     def action(self, args):
-        print args;
         if len(args) > 0:
             sdk_name = args[0];
             Logger.debuglog([Logger.colour('black',True), Logger.string('%s', 'Selected SDK: "'), Logger.string('%s', sdk_name), Logger.string('%s', '"'), Logger.colour('reset', True)]);
+            
         else:
             Logger.debuglog([Logger.colour('black',True), Logger.string('%s', 'Please supply the name of an SDK'), Logger.colour('reset', True)]);
