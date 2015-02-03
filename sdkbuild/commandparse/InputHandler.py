@@ -10,6 +10,8 @@ from .cmd_list import *
 from .cmd_sdk import *
 from .cmd_xcode import *
 from .cmd_info import *
+from .cmd_install import *
+from .cmd_uninstall import *
 
 from ..settings.Settings import Settings
 
@@ -102,3 +104,16 @@ class InputHandler(cmd.Cmd):
     def do_info(self, line):
         cmd_info.action(self.GetArguments(str(line)));
     
+    # install
+    def help_install(self):
+        self.DisplayUsage(cmd_install.usage());
+    
+    def do_install(self, line):
+        cmd_install.action(self.GetArguments(str(line)));
+    
+    # uninstall
+    def help_install(self):
+        self.DisplayUsage(cmd_uninstall.usage());
+    
+    def do_install(self, line):
+        cmd_uninstall.action(self.GetArguments(str(line)));
