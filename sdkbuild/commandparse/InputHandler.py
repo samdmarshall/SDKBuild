@@ -28,7 +28,7 @@ class InputHandler(cmd.Cmd):
             if len(current_word) == 0:
                 offset += 1;
             else:
-                if offset > 0:
+                if offset >= 0:
                     curr = offset + len(word);
                     prev = curr - 1
                     if arguments_str[prev:curr] != '\\':
@@ -63,13 +63,16 @@ class InputHandler(cmd.Cmd):
         self.DisplayUsage(cmd_sdk.usage());
     
     def do_sdk(self, line):
+        args = self.GetArguments(str(line));
         
-        
-        for item in self.settings.ListOfActiveSDKs():
-            if select_sdk == os.path.basename(item):
-                
+        if len(args) > 0:
+            select_sdk = args[0];
+            selected_sdk_path = '';
+            for item in self.settings.ListOfActiveSDKs():
+                if select_sdk == os.path.basename(item):
+                    selected_sdk_path = item;
             
-        cmd_sdk.action();
+            cmd_sdk.action(selected_sdk_path);
     
     def complete_sdk(self, text, line, begidx, endidx):
         SDKs = [];
